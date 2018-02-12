@@ -1,0 +1,247 @@
+----------------------------------------
+PBS: Begin PBS Prologue Thu Feb  8 23:24:25 CST 2018 1518153865
+PBS: Job ID:		22517574.qsched03.quest.it.northwestern.edu
+PBS: Username:		jam119
+PBS: Group:		jam119
+PBS: Executing queue:     buyin
+PBS: Job name:		test-bench
+PBS: Account:		b1030
+----------------------------------------
+   The following variables are not
+   guaranteed to be the same in 
+   prologue and the job run script  
+----------------------------------------
+PBS: Temporary Dir($TMPDIR):	/tmp/22517574.qsched03.quest.it.northwestern.edu
+PBS: Master Node($PBS_MSHOST):		qgpu6004
+PBS: node file($PBS_NODEFILE):  /hpc/opt/torque6/nodes/qgpu6004/aux//22517574.qsched03.quest.it.northwestern.edu
+PBS: PATH (in prologue) : /bin:/usr/bin
+PBS: WORKDIR ($PBS_O_WORKDIR) is:  /projects/b1021/Jaime_pmf/test-wall/addatomic/2000_par
+----------------------------------------
+PBS: End PBS Prologue Thu Feb  8 23:24:25 CST 2018 1518153865
+HOOMD-blue v2.1.8-722-gde67388 CUDA (7.5) SINGLE SSE SSE2 
+Compiled: 02/07/2018
+Copyright 2009-2017 The Regents of the University of Michigan.
+-----
+You are using HOOMD-blue. Please cite the following:
+* J A Anderson, C D Lorenz, and A Travesset. "General purpose molecular dynamics
+  simulations fully implemented on graphics processing units", Journal of
+  Computational Physics 227 (2008) 5342--5359
+* J Glaser, T D Nguyen, J A Anderson, P Liu, F Spiga, J A Millan, D C Morse, and
+  S C Glotzer. "Strong scaling of general-purpose molecular dynamics simulations
+  on GPUs", Computer Physics Communications 192 (2015) 97--107
+-----
+HOOMD-blue is running on the following GPU(s):
+ [0]             Tesla K80  13 SM_3.7 @ 0.823 GHz, 11439 MiB DRAM
+benchmark.py:029  |  system = deprecated.init.read_xml("2000.xml")
+notice(2): Reading 2000.xml...
+notice(2): --- hoomd_xml file read summary
+notice(2): 2000 positions at timestep 0
+notice(2): 2000 masses
+notice(2): 2000 diameters
+notice(2): 2 particle types
+notice(2): 2000 particle body values
+notice(2): 2000 charges
+notice(2): Group "all" created containing 2000 particles
+benchmark.py:030  |  group_A = group.type(name='a-particles', type = 'A')
+notice(2): Group "a-particles" created containing 1999 particles
+benchmark.py:033  |  nl =nlist.cell()
+benchmark.py:034  |  c.sorter.disable()
+benchmark.py:035  |  slj= pair.slj(r_cut = 3.5, nlist=nl)
+notice(2): Notice: slj set d_max=1.0
+benchmark.py:036  |  slj.set_params(mode="shift")
+pair.py:801  |          pair.set_params(self, mode=mode);
+benchmark.py:037  |  slj.pair_coeff.set('A','A' , epsilon=1.0, sigma=1.0 )
+benchmark.py:038  |  slj.pair_coeff.set('A','B' , epsilon=0.0, sigma=1.0 )
+benchmark.py:039  |  slj.pair_coeff.set('B','B' , epsilon=0.0, sigma=1.0 )
+benchmark.py:049  |  wall_force_slj=wall.lj(walls, r_cut=4.0,active_planes=[0,1])
+benchmark.py:050  |  wall_force_slj.force_coeff.set('A', epsilon= 1.5,r_cut=4,sigma=sigma,r_extrap = 0.05)
+benchmark.py:051  |  wall_force_slj.force_coeff.set('B', epsilon= 0,r_cut=4,sigma=sigma,r_extrap = 0.05)
+benchmark.py:063  |  logger = analyze.log(quantities=['temperature' , 'potential_energy', 'kinetic_energy'],
+												 period=5e2, filename='log.log', overwrite=True)
+benchmark.py:070  |  integrate.mode_standard(dt=0.001)
+benchmark.py:073  |  integrator = integrate.nve(group_A , limit = 0.0001)
+benchmark.py:074  |  zero = update.zero_momentum(period =100)
+benchmark.py:076  |  run(1e3)
+notice(2): -- Neighborlist exclusion statistics -- :
+notice(2): Particles with 0 exclusions             : 2000
+notice(2): Neighbors included by diameter          : yes
+notice(2): Neighbors excluded when in the same body: no
+** starting run **
+Time 00:00:00 | Step 1000 / 1000 | TPS 4515.98 | ETA 00:00:00
+Average TPS: 4515.26
+---------
+-- Neighborlist stats:
+0 normal updates / 0 forced updates / 0 dangerous updates
+n_neigh_min: 33 / n_neigh_max: 58 / n_neigh_avg: 53.8
+shortest rebuild period: 100
+-- Cell list stats:
+Dimension: 5, 5, 7
+n_min    : 0 / n_max: 20 / n_avg: 11.4286
+** run complete **
+benchmark.py:077  |  integrator.disable()
+benchmark.py:078  |  zero.disable()
+benchmark.py:085  |  integrator = integrate.nvt(group=group_A , tau = 0.65 , kT = 0.001)
+benchmark.py:086  |  integrator.set_params(kT=variant.linear_interp(points=[(0, logger.query('temperature')), (2e6, 0.75)]))
+benchmark.py:088  |  run(2e6)
+** starting run **
+Time 00:00:10 | Step 33619 / 2001000 | TPS 3261.89 | ETA 00:10:03
+Time 00:00:20 | Step 92044 / 2001000 | TPS 5842.49 | ETA 00:05:26
+Time 00:00:30 | Step 147287 / 2001000 | TPS 5524.21 | ETA 00:05:35
+Time 00:00:40 | Step 202312 / 2001000 | TPS 5502.5 | ETA 00:05:26
+Time 00:00:50 | Step 256981 / 2001000 | TPS 5466.88 | ETA 00:05:19
+Time 00:01:00 | Step 312421 / 2001000 | TPS 5543.95 | ETA 00:05:04
+Time 00:01:10 | Step 369636 / 2001000 | TPS 5721.44 | ETA 00:04:45
+Time 00:01:20 | Step 426734 / 2001000 | TPS 5709.73 | ETA 00:04:35
+Time 00:01:30 | Step 484009 / 2001000 | TPS 5727.46 | ETA 00:04:24
+Time 00:01:40 | Step 541107 / 2001000 | TPS 5709.74 | ETA 00:04:15
+Time 00:01:50 | Step 598275 / 2001000 | TPS 5716.72 | ETA 00:04:05
+Time 00:02:00 | Step 655258 / 2001000 | TPS 5698.21 | ETA 00:03:56
+Time 00:02:10 | Step 712178 / 2001000 | TPS 5691.93 | ETA 00:03:46
+Time 00:02:20 | Step 769053 / 2001000 | TPS 5687.44 | ETA 00:03:36
+Time 00:02:30 | Step 825784 / 2001000 | TPS 5673.1 | ETA 00:03:27
+Time 00:02:40 | Step 882111 / 2001000 | TPS 5632.68 | ETA 00:03:18
+Time 00:02:50 | Step 938891 / 2001000 | TPS 5677.98 | ETA 00:03:07
+Time 00:03:00 | Step 995890 / 2001000 | TPS 5699.88 | ETA 00:02:56
+Time 00:03:10 | Step 1052635 / 2001000 | TPS 5674.45 | ETA 00:02:47
+Time 00:03:20 | Step 1109365 / 2001000 | TPS 5672.93 | ETA 00:02:37
+Time 00:03:30 | Step 1166041 / 2001000 | TPS 5667.6 | ETA 00:02:27
+Time 00:03:40 | Step 1222635 / 2001000 | TPS 5659.31 | ETA 00:02:17
+Time 00:03:50 | Step 1279368 / 2001000 | TPS 5673.3 | ETA 00:02:07
+Time 00:04:00 | Step 1335816 / 2001000 | TPS 5644.72 | ETA 00:01:57
+Time 00:04:10 | Step 1392700 / 2001000 | TPS 5688.34 | ETA 00:01:46
+Time 00:04:20 | Step 1449476 / 2001000 | TPS 5677.58 | ETA 00:01:37
+Time 00:04:30 | Step 1505896 / 2001000 | TPS 5641.95 | ETA 00:01:27
+Time 00:04:40 | Step 1562648 / 2001000 | TPS 5675.18 | ETA 00:01:17
+Time 00:04:50 | Step 1619029 / 2001000 | TPS 5638.04 | ETA 00:01:07
+Time 00:05:00 | Step 1675534 / 2001000 | TPS 5650.44 | ETA 00:00:57
+Time 00:05:10 | Step 1731884 / 2001000 | TPS 5634.97 | ETA 00:00:47
+Time 00:05:20 | Step 1788919 / 2001000 | TPS 5703.42 | ETA 00:00:37
+Time 00:05:30 | Step 1845863 / 2001000 | TPS 5694.37 | ETA 00:00:27
+Time 00:05:40 | Step 1902905 / 2001000 | TPS 5704.19 | ETA 00:00:17
+Time 00:05:50 | Step 1960435 / 2001000 | TPS 5753 | ETA 00:00:07
+Time 00:05:57 | Step 2001000 / 2001000 | TPS 5783.22 | ETA 00:00:00
+Average TPS: 5601.98
+---------
+-- Neighborlist stats:
+23547 normal updates / 1 forced updates / 0 dangerous updates
+n_neigh_min: 0 / n_neigh_max: 191 / n_neigh_avg: 139.95
+shortest rebuild period: 40
+-- Cell list stats:
+Dimension: 5, 5, 7
+n_min    : 0 / n_max: 52 / n_avg: 11.4286
+** run complete **
+benchmark.py:090  |  integrator.set_params(kT=variant.linear_interp(points=[(0, logger.query('temperature')), (2e6, tf)]))
+benchmark.py:091  |  run(2e6)
+** starting run **
+Time 00:06:07 | Step 2058630 / 4001000 | TPS 5763 | ETA 00:05:37
+Time 00:06:17 | Step 2116249 / 4001000 | TPS 5761.67 | ETA 00:05:27
+Time 00:06:27 | Step 2173919 / 4001000 | TPS 5766.96 | ETA 00:05:16
+Time 00:06:37 | Step 2231202 / 4001000 | TPS 5728.27 | ETA 00:05:08
+Time 00:06:47 | Step 2288342 / 4001000 | TPS 5713.99 | ETA 00:04:59
+Time 00:06:57 | Step 2345060 / 4001000 | TPS 5671.78 | ETA 00:04:51
+Time 00:07:07 | Step 2400995 / 4001000 | TPS 5593.27 | ETA 00:04:46
+Time 00:07:17 | Step 2455324 / 4001000 | TPS 5432.88 | ETA 00:04:44
+Time 00:07:27 | Step 2510101 / 4001000 | TPS 5477.7 | ETA 00:04:32
+Time 00:07:37 | Step 2565043 / 4001000 | TPS 5494.12 | ETA 00:04:21
+Time 00:07:47 | Step 2620885 / 4001000 | TPS 5584.17 | ETA 00:04:07
+Time 00:07:57 | Step 2677161 / 4001000 | TPS 5627.58 | ETA 00:03:55
+Time 00:08:07 | Step 2733127 / 4001000 | TPS 5596.52 | ETA 00:03:46
+Time 00:08:17 | Step 2788943 / 4001000 | TPS 5581.53 | ETA 00:03:37
+Time 00:08:27 | Step 2845017 / 4001000 | TPS 5607.37 | ETA 00:03:26
+Time 00:08:37 | Step 2901061 / 4001000 | TPS 5604.39 | ETA 00:03:16
+Time 00:08:47 | Step 2957046 / 4001000 | TPS 5598.42 | ETA 00:03:06
+Time 00:08:57 | Step 3013064 / 4001000 | TPS 5601.72 | ETA 00:02:56
+Time 00:09:07 | Step 3068957 / 4001000 | TPS 5589.24 | ETA 00:02:46
+Time 00:09:17 | Step 3124498 / 4001000 | TPS 5554.02 | ETA 00:02:37
+Time 00:09:27 | Step 3179745 / 4001000 | TPS 5524.62 | ETA 00:02:28
+Time 00:09:37 | Step 3234287 / 4001000 | TPS 5454.14 | ETA 00:02:20
+Time 00:09:47 | Step 3289433 / 4001000 | TPS 5514.55 | ETA 00:02:09
+Time 00:09:57 | Step 3344240 / 4001000 | TPS 5480.61 | ETA 00:01:59
+Time 00:10:07 | Step 3399062 / 4001000 | TPS 5482.16 | ETA 00:01:49
+Time 00:10:17 | Step 3454102 / 4001000 | TPS 5503.94 | ETA 00:01:39
+Time 00:10:27 | Step 3509224 / 4001000 | TPS 5512.18 | ETA 00:01:29
+Time 00:10:37 | Step 3564499 / 4001000 | TPS 5527.43 | ETA 00:01:18
+Time 00:10:47 | Step 3619667 / 4001000 | TPS 5516.73 | ETA 00:01:09
+Time 00:10:57 | Step 3674994 / 4001000 | TPS 5532.7 | ETA 00:00:58
+Time 00:11:07 | Step 3730314 / 4001000 | TPS 5531.93 | ETA 00:00:48
+Time 00:11:17 | Step 3785926 / 4001000 | TPS 5561.17 | ETA 00:00:38
+Time 00:11:27 | Step 3841499 / 4001000 | TPS 5557.21 | ETA 00:00:28
+Time 00:11:37 | Step 3897284 / 4001000 | TPS 5578.46 | ETA 00:00:18
+Time 00:11:47 | Step 3953102 / 4001000 | TPS 5581.8 | ETA 00:00:08
+Time 00:11:55 | Step 4001000 / 4001000 | TPS 5611.72 | ETA 00:00:00
+Average TPS: 5578.2
+---------
+-- Neighborlist stats:
+23513 normal updates / 1 forced updates / 0 dangerous updates
+n_neigh_min: 0 / n_neigh_max: 248 / n_neigh_avg: 178.561
+shortest rebuild period: 41
+-- Cell list stats:
+Dimension: 5, 5, 7
+n_min    : 0 / n_max: 70 / n_avg: 11.4286
+** run complete **
+benchmark.py:035  |          hoomd.run(steps, limit_hours=limit_hours);
+** starting run **
+Time 00:12:05 | Step 4056580 / 4071000 | TPS 5557.97 | ETA 00:00:02
+Time 00:12:08 | Step 4071000 / 4071000 | TPS 5512.83 | ETA 00:00:00
+Average TPS: 5548.59
+---------
+-- Neighborlist stats:
+3 normal updates / 1 forced updates / 0 dangerous updates
+n_neigh_min: 0 / n_neigh_max: 247 / n_neigh_avg: 178.587
+shortest rebuild period: 99
+-- Cell list stats:
+Dimension: 5, 5, 7
+n_min    : 0 / n_max: 69 / n_avg: 11.4286
+** run complete **
+benchmark.py:035  |          hoomd.run(steps, limit_hours=limit_hours);
+** starting run **
+Time 00:12:18 | Step 4126025 / 4141000 | TPS 5502.47 | ETA 00:00:02
+Time 00:12:21 | Step 4141000 / 4141000 | TPS 5502.37 | ETA 00:00:00
+Average TPS: 5502.43
+---------
+-- Neighborlist stats:
+3 normal updates / 1 forced updates / 0 dangerous updates
+n_neigh_min: 0 / n_neigh_max: 247 / n_neigh_avg: 178.592
+shortest rebuild period: 99
+-- Cell list stats:
+Dimension: 5, 5, 7
+n_min    : 0 / n_max: 69 / n_avg: 11.4286
+** run complete **
+benchmark.py:035  |          hoomd.run(steps, limit_hours=limit_hours);
+** starting run **
+Time 00:12:31 | Step 4196112 / 4211000 | TPS 5511.16 | ETA 00:00:02
+Time 00:12:34 | Step 4211000 / 4211000 | TPS 5464.22 | ETA 00:00:00
+Average TPS: 5501.08
+---------
+-- Neighborlist stats:
+3 normal updates / 1 forced updates / 0 dangerous updates
+n_neigh_min: 0 / n_neigh_max: 248 / n_neigh_avg: 178.481
+shortest rebuild period: 99
+-- Cell list stats:
+Dimension: 5, 5, 7
+n_min    : 0 / n_max: 69 / n_avg: 11.4286
+** run complete **
+benchmark.py:035  |          hoomd.run(steps, limit_hours=limit_hours);
+** starting run **
+Time 00:12:44 | Step 4266100 / 4281000 | TPS 5509.98 | ETA 00:00:02
+Time 00:12:46 | Step 4281000 / 4281000 | TPS 5592.2 | ETA 00:00:00
+Average TPS: 5527.26
+---------
+-- Neighborlist stats:
+3 normal updates / 1 forced updates / 0 dangerous updates
+n_neigh_min: 0 / n_neigh_max: 249 / n_neigh_avg: 178.606
+shortest rebuild period: 99
+-- Cell list stats:
+Dimension: 5, 5, 7
+n_min    : 0 / n_max: 68 / n_avg: 11.4286
+** run complete **
+Hours to complete 10e6 steps: 0.503235279463
+benchmark.py:099  |  meta.dump_metadata(filename = workspace+"/metadata.json", user = {'mps': ptps, 'tps': tps});
+----------------------------------------
+PBS job ended
+Begin PBS Epilogue Thu Feb  8 23:37:25 CST 2018 1518154645
+JobID: 22517574.qsched03.quest.it.northwestern.edu
+Session ID:			31499
+Resources Used:			cput=00:12:46,energy_used=0,mem=143684kb,vmem=156922516kb,walltime=00:13:04
+Job exit value:			0
+----------------------------------------

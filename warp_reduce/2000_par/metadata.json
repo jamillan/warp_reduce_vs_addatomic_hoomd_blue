@@ -1,0 +1,202 @@
+{
+    "context": {
+        "cputime": 665.15, 
+        "gpu": "Tesla K80", 
+        "hostname": "qgpu6004", 
+        "job_id": "22517595.qsched03.quest.it.northwestern.edu", 
+        "job_name": "test-bench", 
+        "mode": "gpu", 
+        "num_ranks": 1, 
+        "username": "jam119", 
+        "wallclocktime": 670.276673078537
+    }, 
+    "hoomd": {
+        "compiler_version": "gcc 4.8.5", 
+        "cuda_version": [
+            7, 
+            5
+        ], 
+        "hoomd_compile_flags": "CUDA (7.5) SINGLE SSE SSE2 ", 
+        "hoomd_git_refspec": "refs/heads/md_npt_walls", 
+        "hoomd_git_sha1": "de67388734967398381cc793e1f1ed00d7f84aef", 
+        "hoomd_version": [
+            2, 
+            1, 
+            8
+        ]
+    }, 
+    "hoomd.analyze.log": [
+        {
+            "enabled": true, 
+            "filename": "log.log", 
+            "period": 500.0
+        }
+    ], 
+    "hoomd.data.system_data": {
+        "angles": {
+            "N": 0, 
+            "types": []
+        }, 
+        "bonds": {
+            "N": 0, 
+            "types": []
+        }, 
+        "box": {
+            "Lx": 20.0, 
+            "Ly": 20.0, 
+            "Lz": 30.0, 
+            "V": 12000.0, 
+            "d": 3, 
+            "xy": 0.0, 
+            "xz": 0.0, 
+            "yz": 0.0
+        }, 
+        "constraints": {
+            "N": 0
+        }, 
+        "dihedrals": {
+            "N": 0, 
+            "types": []
+        }, 
+        "impropers": {
+            "N": 0, 
+            "types": []
+        }, 
+        "number_density": 0.16666666666666666, 
+        "pairs": {
+            "N": 0, 
+            "types": []
+        }, 
+        "particles": {
+            "N": 2000, 
+            "types": [
+                "B", 
+                "A"
+            ]
+        }, 
+        "timestep": 4281000
+    }, 
+    "hoomd.md.integrate.mode_standard": {
+        "aniso": null, 
+        "dt": 0.001
+    }, 
+    "hoomd.md.integrate.nvt": [
+        {
+            "enabled": true, 
+            "group": {
+                "name": "a-particles"
+            }, 
+            "kT": [
+                [
+                    0, 
+                    0.7391685247421265
+                ], 
+                [
+                    2000000.0, 
+                    0.01
+                ]
+            ], 
+            "tau": 0.65
+        }
+    ], 
+    "hoomd.md.pair.slj": [
+        {
+            "enabled": true, 
+            "log": true, 
+            "pair_coeff": [
+                {
+                    "alpha": 1.0, 
+                    "epsilon": 0.0, 
+                    "r_cut": 3.5, 
+                    "r_on": 3.5, 
+                    "sigma": 1.0, 
+                    "typei": "A", 
+                    "typej": "B"
+                }, 
+                {
+                    "alpha": 1.0, 
+                    "epsilon": 1.0, 
+                    "r_cut": 3.5, 
+                    "r_on": 3.5, 
+                    "sigma": 1.0, 
+                    "typei": "A", 
+                    "typej": "A"
+                }, 
+                {
+                    "alpha": 1.0, 
+                    "epsilon": 0.0, 
+                    "r_cut": 3.5, 
+                    "r_on": 3.5, 
+                    "sigma": 1.0, 
+                    "typei": "B", 
+                    "typej": "B"
+                }
+            ]
+        }
+    ], 
+    "hoomd.md.wall.lj": [
+        {
+            "enabled": true, 
+            "force_coeff": {
+                "A": {
+                    "alpha": 1.0, 
+                    "epsilon": 1.5, 
+                    "r_cut": 4, 
+                    "r_extrap": 0.05, 
+                    "sigma": 1.0
+                }, 
+                "B": {
+                    "alpha": 1.0, 
+                    "epsilon": 0, 
+                    "r_cut": 4, 
+                    "r_extrap": 0.05, 
+                    "sigma": 1.0
+                }
+            }, 
+            "log": true, 
+            "walls_struct": {
+                "cylinders": [], 
+                "planes": [
+                    {
+                        "inside": true, 
+                        "normal": [
+                            0.0, 
+                            0.0, 
+                            -1.0
+                        ], 
+                        "origin": [
+                            0.0, 
+                            0.0, 
+                            14.0
+                        ]
+                    }, 
+                    {
+                        "inside": true, 
+                        "normal": [
+                            0.0, 
+                            0.0, 
+                            1.0
+                        ], 
+                        "origin": [
+                            0.0, 
+                            0.0, 
+                            -14.0
+                        ]
+                    }
+                ], 
+                "spheres": [], 
+                "tag": 0
+            }
+        }
+    ], 
+    "timestamp": "2018-02-08 23:42:46", 
+    "user": {
+        "mps": 12681440.673828125, 
+        "tps": [
+            6320.91064453125, 
+            6351.125, 
+            6341.88818359375, 
+            6348.95751953125
+        ]
+    }
+}

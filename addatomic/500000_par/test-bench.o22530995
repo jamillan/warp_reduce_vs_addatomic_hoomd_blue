@@ -1,0 +1,20 @@
+----------------------------------------
+PBS: Begin PBS Prologue Mon Feb 12 15:37:37 CST 2018 1518471457
+PBS: Job ID:		22530995.qsched03.quest.it.northwestern.edu
+PBS: Username:		jam119
+PBS: Group:		jam119
+PBS: Executing queue:     buyin
+PBS: Job name:		test-bench
+PBS: Account:		b1030
+----------------------------------------
+   The following variables are not
+   guaranteed to be the same in 
+   prologue and the job run script  
+----------------------------------------
+PBS: Temporary Dir($TMPDIR):	/tmp/22530995.qsched03.quest.it.northwestern.edu
+PBS: Master Node($PBS_MSHOST):		qgpu6004
+PBS: node file($PBS_NODEFILE):  /hpc/opt/torque6/nodes/qgpu6004/aux//22530995.qsched03.quest.it.northwestern.edu
+PBS: PATH (in prologue) : /bin:/usr/bin
+PBS: WORKDIR ($PBS_O_WORKDIR) is:  /projects/b1021/Jaime_pmf/test-wall/addatomic/500000_par
+----------------------------------------
+PBS: End PBS Prologue Mon Feb 12 15:37:37 CST 2018 1518471457
